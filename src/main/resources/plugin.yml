@@ -1,0 +1,13 @@
+name: CustomFishing
+version: 0.1.0
+load: POSTWORLD
+softdepend: [Multiverse-Core]
+author: cubito_verde
+main: com.gmail.cubitverde.CustomFishingRevamped.CustomFishingRevamped
+prefix: CustomFishing
+api-version: 1.16
+
+commands:
+  customfishing:
+    permission: customfishing.admin
+    aliases: cfishing
