@@ -32,8 +32,10 @@ public class LootCollections implements PageMenu {
         LinkedList<Icon> icons = new LinkedList<>();
 
         for (Collection collection : CustomFishingRevamped.collections) {
-            Icon icon = new Icon(MiscUtils.CreateItem(collection.getIcon(), ChatColor.GREEN + collection.getName()));
-            // icon.addAction(new OpenMenu(player, new BlockMenu(player, block)));
+            Icon icon = new Icon(MiscUtils.CreateItem(collection.getIcon(), ChatColor.GREEN + collection.getName(),
+                    ChatColor.DARK_GREEN + "Left click: " + ChatColor.GRAY + "Items",
+                    ChatColor.DARK_GREEN + "Right click: " + ChatColor.GRAY + "Settings"));
+            icon.addRAction(new OpenMenu(player, new CollectionSettings(player, collection)));
             icons.add(icon);
         }
 

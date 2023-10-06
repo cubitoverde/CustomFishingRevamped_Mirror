@@ -14,8 +14,6 @@ public class Collection {
 
     private LinkedList<Drop> items;
 
-    // private Conditions conditions;
-
     public Collection() {
         this.id = CustomFishingRevamped.collectionId++;
         this.name = ChatColor.GREEN + "New collection";
