@@ -1,5 +1,7 @@
 package com.gmail.cubitverde.CustomFishingRevamped.menus;
 
+import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.lootCollections.LootCollections;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Icon;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.GuiUtils;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.MiscUtils;
@@ -23,11 +25,23 @@ public class MainMenu implements Menu {
         Map<Integer, Icon> icons = new HashMap<>();
 
         {
-            Icon icon = new Icon(MiscUtils.CreateItem(Material.GRASS_BLOCK, ChatColor.GREEN + "Name"));
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.TROPICAL_FISH, ChatColor.GREEN + "Fishing loot"));
             // icon.addAction(new OpenMenu(player, MENU));
             icons.put(10, icon);
+        } {
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.CHEST, ChatColor.GREEN + "Loot collections"));
+            icon.addAction(new OpenMenu(player, new LootCollections(player)));
+            icons.put(12, icon);
+        } {
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.FISHING_ROD, ChatColor.GREEN + "Fishing settings"));
+            // icon.addAction(new OpenMenu(player, MENU));
+            icons.put(14, icon);
+        }  {
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.COMMAND_BLOCK, ChatColor.GREEN + "Plugin settings"));
+            // icon.addAction(new OpenMenu(player, MENU));
+            icons.put(16, icon);
         }
 
-        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Main Menu]", 4*9, null);
+        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Main Menu]", 3*9, null);
     }
 }

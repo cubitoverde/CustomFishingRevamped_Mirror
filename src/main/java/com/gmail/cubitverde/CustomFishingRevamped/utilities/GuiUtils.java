@@ -50,7 +50,7 @@ public class GuiUtils {
 
         {
             inventory.setItem(4, MiscUtils.CreateItem(Material.WHITE_STAINED_GLASS_PANE,
-                    ChatColor.DARK_GREEN + "[" + ChatColor.GREEN + "Custom Dungeons" + ChatColor.DARK_GREEN + "]",
+                    ChatColor.DARK_GREEN + "[" + ChatColor.GREEN + "Custom Fishing Revamped" + ChatColor.DARK_GREEN + "]",
                     ChatColor.DARK_GREEN + "Created by: " + ChatColor.GREEN + "cubitoverde"));
         }
     }
@@ -71,7 +71,7 @@ public class GuiUtils {
         return inventory;
     }
 
-    public static Inventory BuildInventory(Player player, Map<Integer, Icon> icons, String title, int size, Menu backMenu,
+    public static Inventory BuildInventory(Player player, LinkedList<Icon> icons, String title, int size, Menu backMenu,
                                            int page, Action newItemAction, PageMenu thisMenu) {
         LinkedList<Integer> inventoryInside = InventoryInside(size);
         int insideSize = inventoryInside.size();
