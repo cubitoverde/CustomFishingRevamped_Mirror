@@ -26,7 +26,7 @@ public class Holder implements InventoryHolder {
         return player.getInventory();
     }
 
-    public void trigger(int slot, boolean isLeftClick, boolean isRightClick) {
+    public void trigger(int slot, boolean isLeftClick, boolean isRightClick, boolean isShiftClick) {
         if (icons.containsKey(slot)) {
             if (isLeftClick) {
                 LinkedList<Action> LActions = icons.get(slot).getLActions();
@@ -37,6 +37,12 @@ public class Holder implements InventoryHolder {
             if (isRightClick) {
                 LinkedList<Action> RActions = icons.get(slot).getRActions();
                 for (Action action : RActions) {
+                    action.run();
+                }
+            }
+            if (isShiftClick) {
+                LinkedList<Action> ShiftActions = icons.get(slot).getShiftActions();
+                for (Action action : ShiftActions) {
                     action.run();
                 }
             }

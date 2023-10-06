@@ -9,6 +9,7 @@ public class Icon {
     private ItemStack item;
     private LinkedList<Action> LActions = new LinkedList<>();
     private LinkedList<Action> RActions = new LinkedList<>();
+    private LinkedList<Action> ShiftActions = new LinkedList<>();
 
     public Icon(ItemStack item) {
         this.item = item;
@@ -49,5 +50,16 @@ public class Icon {
     public void setActions(LinkedList<Action> actions) {
         this.LActions = actions;
         this.RActions = actions;
+    }
+
+    public void addShiftAction(Action action) {
+        ShiftActions.add(action);
+    }
+
+    public void setShiftActions(LinkedList<Action> actions) {
+        this.ShiftActions = actions;
+    }
+    public LinkedList<Action> getShiftActions() {
+        return ShiftActions;
     }
 }

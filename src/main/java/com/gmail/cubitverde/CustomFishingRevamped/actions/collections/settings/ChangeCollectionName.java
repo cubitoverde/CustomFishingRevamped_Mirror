@@ -1,4 +1,4 @@
-package com.gmail.cubitverde.CustomFishingRevamped.actions.collections;
+package com.gmail.cubitverde.CustomFishingRevamped.actions.collections.settings;
 
 import com.gmail.cubitverde.CustomFishingRevamped.CustomFishingRevamped;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.SpeakerAction;

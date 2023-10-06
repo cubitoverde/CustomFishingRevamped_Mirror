@@ -82,4 +82,7 @@ public class MiscUtils {
         return null;
     }
 
+    public static Material GetBooleanConcrete(boolean bool) {
+        return bool ? Material.LIME_CONCRETE : Material.RED_CONCRETE;
+    }
 }

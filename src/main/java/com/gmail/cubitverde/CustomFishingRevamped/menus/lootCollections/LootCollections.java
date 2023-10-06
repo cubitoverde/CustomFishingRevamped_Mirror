@@ -35,6 +35,7 @@ public class LootCollections implements PageMenu {
             Icon icon = new Icon(MiscUtils.CreateItem(collection.getIcon(), ChatColor.GREEN + collection.getName(),
                     ChatColor.DARK_GREEN + "Left click: " + ChatColor.GRAY + "Items",
                     ChatColor.DARK_GREEN + "Right click: " + ChatColor.GRAY + "Settings"));
+            icon.addLAction(new OpenMenu(player, new CollectionItems(player, collection)));
             icon.addRAction(new OpenMenu(player, new CollectionSettings(player, collection)));
             icons.add(icon);
         }

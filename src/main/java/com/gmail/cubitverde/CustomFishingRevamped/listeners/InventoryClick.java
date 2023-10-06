@@ -34,7 +34,7 @@ public class InventoryClick implements Listener {
                 return;
             }
 
-            holder.trigger(event.getSlot(), event.isLeftClick(), event.isRightClick());
+            holder.trigger(event.getSlot(), event.isLeftClick(), event.isRightClick(), event.isShiftClick());
             return;
         }
     }

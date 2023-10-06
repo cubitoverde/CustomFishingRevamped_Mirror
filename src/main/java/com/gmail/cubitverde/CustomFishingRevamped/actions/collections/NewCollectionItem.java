@@ -2,19 +2,17 @@ package com.gmail.cubitverde.CustomFishingRevamped.actions.collections;
 
 import com.gmail.cubitverde.CustomFishingRevamped.actions.Action;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Collection;
-import org.bukkit.Material;
+import com.gmail.cubitverde.CustomFishingRevamped.objects.Drop;
 
-public class ChangeCollectionIcon implements Action {
+public class NewCollectionItem implements Action {
     private Collection collection;
-    private Material icon;
 
-    public ChangeCollectionIcon(Collection collection, Material icon) {
+    public NewCollectionItem(Collection collection) {
         this.collection = collection;
-        this.icon = icon;
     }
 
     @Override
     public void run() {
-        collection.setIcon(icon);
+        collection.addItem(new Drop());
     }
 }

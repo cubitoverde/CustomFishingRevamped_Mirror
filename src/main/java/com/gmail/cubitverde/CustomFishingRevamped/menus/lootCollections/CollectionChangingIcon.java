@@ -1,6 +1,6 @@
 package com.gmail.cubitverde.CustomFishingRevamped.menus.lootCollections;
 
-import com.gmail.cubitverde.CustomFishingRevamped.actions.collections.ChangeCollectionIcon;
+import com.gmail.cubitverde.CustomFishingRevamped.actions.collections.settings.ChangeCollectionIcon;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Collection;
@@ -16,11 +16,11 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChangeCollectionIcons implements Menu {
+public class CollectionChangingIcon implements Menu {
     private Player player;
     private Collection collection;
 
-    public ChangeCollectionIcons(Player player, Collection collection) {
+    public CollectionChangingIcon(Player player, Collection collection) {
         this.player = player;
         this.collection = collection;
     }
