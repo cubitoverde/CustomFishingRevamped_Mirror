@@ -40,7 +40,8 @@ public class DropSettings implements Menu {
             Icon icon = new Icon(PluginUtils.GetCollectionDropInfoItem(drop, collection));
             icons.put(11, icon);
         } {
-            Icon icon = new Icon(MiscUtils.CreateItem(Material.CLOCK, ChatColor.GREEN + "Change weight"));
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.CLOCK, ChatColor.GREEN + "Change weight",
+                    ChatColor.DARK_GREEN + "Current weight: " + ChatColor.GRAY + drop.getWeight()));
             icon.addAction(new ChangeDropWeight(player, drop, this));
             icons.put(14, icon);
         } {
@@ -48,7 +49,8 @@ public class DropSettings implements Menu {
             icon.addAction(new OpenMenu(player, new DropChangingItem(player, collection, drop)));
             icons.put(15, icon);
         } {
-            Icon icon = new Icon(MiscUtils.CreateItem(Material.COMMAND_BLOCK, ChatColor.GREEN + "Change commands"));
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.COMMAND_BLOCK, ChatColor.GREEN + "Change commands",
+                    ChatColor.DARK_GREEN + "Current commands: " + ChatColor.GRAY + drop.getCommands().size()));
             icon.addAction(new OpenMenu(player, new DropCommands(player, collection, drop)));
             icons.put(16, icon);
         } {

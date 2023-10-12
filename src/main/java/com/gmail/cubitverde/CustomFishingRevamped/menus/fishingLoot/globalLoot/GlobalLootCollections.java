@@ -34,8 +34,8 @@ public class GlobalLootCollections implements PageMenu {
 
         for (LootCollection lootCollection : CustomFishingRevamped.globalLootCollections) {
             Icon icon = new Icon(PluginUtils.GetGlobalLootCollectionItem(lootCollection));
-            // icon.addLAction(new OpenMenu(player, new LootCollectionItems(player, lootCollection)));
-            // icon.addRAction(new OpenMenu(player, new LootCollectionSettings(player, lootCollection)));
+            icon.addLAction(new OpenMenu(player, new GlobalLootCollectionItems(player, lootCollection)));
+            icon.addRAction(new OpenMenu(player, new GlobalLootCollectionSettings(player, lootCollection)));
             icons.add(icon);
         }
 

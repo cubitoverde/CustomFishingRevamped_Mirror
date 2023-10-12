@@ -29,6 +29,14 @@ public class MiscUtils {
         return itemStack;
     }
 
+    public static ItemStack CreateItem(Material material, String name, LinkedList<String> lore) {
+        ItemStack itemStack = CreateItem(material, name);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setLore(lore);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
     public static LinkedList<String> GetColors() {
         LinkedList<String> colors = new LinkedList<>();
         colors.add("BLACK");

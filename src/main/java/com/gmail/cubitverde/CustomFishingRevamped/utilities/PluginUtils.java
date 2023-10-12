@@ -84,22 +84,30 @@ public class PluginUtils {
         ItemMeta itemMeta = item.getItemMeta();
         LinkedList<String> lore = new LinkedList<>();
 
-        lore.add(ChatColor.DARK_GREEN + "Left click: " + ChatColor.GRAY + "Collection items");
+        lore.add(ChatColor.DARK_GREEN + "Left click: " + ChatColor.GRAY + "View items");
         lore.add(ChatColor.DARK_GREEN + "Right click: " + ChatColor.GRAY + "Settings");
 
-        lore.add(ChatColor.GRAY + "·");
+        lore.add(ChatColor.GRAY + " ");
 
-        lore.add(ChatColor.DARK_GREEN + "Collection weight: " + ChatColor.GRAY + lootCollection.getWeight());
-        lore.add(ChatColor.DARK_GREEN + "Total global weight: " + ChatColor.GRAY + GetGlobalTotalWeight());
-
-        lore.add(ChatColor.DARK_GREEN + "Drop chance: " + ChatColor.WHITE + new DecimalFormat("#%.##").format(GetDropChanceInGlobal(lootCollection)));
-
-        lore.add(ChatColor.DARK_GREEN + "Luck weight modifier: " + ChatColor.GRAY + GetLuckModifierAsString(lootCollection.getLuckModifier()));
-        lore.add(ChatColor.DARK_GREEN + "Items dropped: " + ChatColor.GRAY + lootCollection.getItemDrops());
+        lore.addAll(GetGlobalLootModifierInfoLore(lootCollection));
 
         itemMeta.setLore(lore);
         item.setItemMeta(itemMeta);
         return item;
+    }
+
+    public static LinkedList<String> GetGlobalLootModifierInfoLore(LootCollection lootCollection) {
+        LinkedList<String> lore = new LinkedList<>();
+
+        lore.add(ChatColor.DARK_GREEN + "Collection weight: " + ChatColor.GRAY + lootCollection.getWeight());
+        lore.add(ChatColor.DARK_GREEN + "Total global loot weight: " + ChatColor.GRAY + GetGlobalTotalWeight());
+
+        lore.add(ChatColor.DARK_GREEN + "Drop chance: " + ChatColor.WHITE + new DecimalFormat("#%.##").format(GetDropChanceInGlobal(lootCollection)));
+
+        lore.add(ChatColor.DARK_GREEN + "Luck modifier: " + ChatColor.GRAY + GetIntModifierAsString(lootCollection.getLuckModifier()));
+        lore.add(ChatColor.DARK_GREEN + "Items dropped: " + ChatColor.GRAY + lootCollection.getItemDrops());
+
+        return lore;
     }
 
     public static int GetGlobalTotalWeight() {
@@ -117,8 +125,19 @@ public class PluginUtils {
         return ((double) weight) / ((double) total);
     }
 
-    public static String GetLuckModifierAsString(int lootModifier) {
-        return lootModifier > 0 ? "+" + lootModifier : "" + lootModifier;
+    public static String GetIntModifierAsString(int intModifier) {
+        return intModifier > 0 ? "+" + intModifier : "" + intModifier;
+    }
+
+    public static String ColorIntModifier(int intModifier) {
+        String text = GetIntModifierAsString(intModifier);
+        if (intModifier > 0) {
+            return ChatColor.GREEN + text;
+        } else if (intModifier < 0) {
+            return ChatColor.RED + text;
+        } else {
+            return ChatColor.WHITE + text;
+        }
     }
 
     public static boolean CheckIfCollectionInList(Collection collection, LinkedList<Collection> collections) {
