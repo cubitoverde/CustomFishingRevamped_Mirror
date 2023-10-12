@@ -31,8 +31,12 @@ public class ChangeDropWeight implements SpeakerAction {
     public void run(String message) {
         try {
             int newWeight = Integer.parseInt(message);
-            drop.setWeight(newWeight);
-            player.sendMessage(ChatColor.DARK_GREEN + "Drop weight changed to: " + ChatColor.GREEN + message + ChatColor.DARK_GREEN + ".");
+            if (newWeight < 0) {
+                player.sendMessage(ChatColor.DARK_RED + "Error: Weight " + ChatColor.RED + message + ChatColor.DARK_RED + " is not a positive integer.");
+            } else {
+                drop.setWeight(newWeight);
+                player.sendMessage(ChatColor.DARK_GREEN + "Drop weight changed to: " + ChatColor.GREEN + message + ChatColor.DARK_GREEN + ".");
+            }
         } catch (Exception e) {
             player.sendMessage(ChatColor.DARK_RED + "Error: Weight " + ChatColor.RED + message + ChatColor.DARK_RED + " is not a positive integer.");
         }

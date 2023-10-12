@@ -5,6 +5,7 @@ import com.gmail.cubitverde.CustomFishingRevamped.listeners.InventoryClick;
 import com.gmail.cubitverde.CustomFishingRevamped.listeners.PlayerChat;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.MainMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Collection;
+import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCollection;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Speaker;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -22,8 +23,10 @@ public class CustomFishingRevamped extends JavaPlugin {
 
     public static int dropId;
     public static int collectionId;
+    public static int lootCollectionId;
 
     public static LinkedList<Collection> collections = new LinkedList<>();
+    public static LinkedList<LootCollection> globalLootCollections = new LinkedList<>();
 
     public static Map<UUID, Speaker> speakers = new HashMap<>();
 

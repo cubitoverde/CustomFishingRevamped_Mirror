@@ -1,6 +1,7 @@
 package com.gmail.cubitverde.CustomFishingRevamped.menus;
 
 import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.FishingLootMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.lootCollections.CollectionsList;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Icon;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.GuiUtils;
@@ -26,7 +27,7 @@ public class MainMenu implements Menu {
 
         {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.TROPICAL_FISH, ChatColor.GREEN + "Fishing loot"));
-            // icon.addAction(new OpenMenu(player, MENU));
+            icon.addAction(new OpenMenu(player, new FishingLootMenu(player)));
             icons.put(10, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.CHEST, ChatColor.GREEN + "Loot collections"));
