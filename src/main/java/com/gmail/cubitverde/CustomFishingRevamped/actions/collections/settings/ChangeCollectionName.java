@@ -9,9 +9,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class ChangeCollectionName implements SpeakerAction {
-    Player player;
-    Collection collection;
-    Menu menu;
+    private Player player;
+    private Collection collection;
+    private Menu menu;
 
     public ChangeCollectionName(Player player, Collection collection, Menu menu) {
         this.player = player;

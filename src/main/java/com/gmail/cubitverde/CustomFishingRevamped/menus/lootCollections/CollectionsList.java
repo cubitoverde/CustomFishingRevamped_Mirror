@@ -15,10 +15,10 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.LinkedList;
 
-public class LootCollections implements PageMenu {
+public class CollectionsList implements PageMenu {
     private Player player;
 
-    public LootCollections(Player player) {
+    public CollectionsList(Player player) {
         this.player = player;
     }
 

@@ -72,7 +72,7 @@ public class GuiUtils {
     }
 
     public static Inventory BuildInventory(Player player, LinkedList<Icon> icons, String title, int size, Menu backMenu,
-                                           int page, Action newItemAction, PageMenu thisMenu) {
+                                           int page, Action newItemAction, boolean refreshWhenNewItem, PageMenu thisMenu) {
         LinkedList<Integer> inventoryInside = InventoryInside(size);
         int insideSize = inventoryInside.size();
         int listSize = icons.size();
@@ -85,7 +85,9 @@ public class GuiUtils {
                 if (newItemAction != null) {
                     Icon icon = new Icon(MiscUtils.CreateItem(Material.LIME_DYE, ChatColor.GREEN + "New"));
                     icon.addAction(newItemAction);
-                    icon.addAction(new OpenMenu(player, thisMenu, page));
+                    if (refreshWhenNewItem) {
+                        icon.addAction(new OpenMenu(player, thisMenu, page));
+                    }
                     iconsMap.put(inventoryInside.get(i), icon);
                 }
                 break;
@@ -124,6 +126,11 @@ public class GuiUtils {
         }
 
         return BuildInventory(player, iconsMap, title, size, backMenu);
+    }
+
+    public static Inventory BuildInventory(Player player, LinkedList<Icon> icons, String title, int size, Menu backMenu,
+                                           int page, Action newItemAction, PageMenu thisMenu) {
+        return BuildInventory(player, icons, title, size, backMenu, page, newItemAction, true, thisMenu);
     }
 
     public static void AddBackItem(Player player, Menu menu, Map<Integer, Icon> icons, int size) {

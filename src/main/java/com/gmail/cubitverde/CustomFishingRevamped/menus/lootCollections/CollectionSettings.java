@@ -43,27 +43,36 @@ public class CollectionSettings implements Menu {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.FIREWORK_STAR, ChatColor.GREEN + "Effect shape",
                     ChatColor.DARK_GREEN + "Current shape: " + ChatColor.GRAY + collection.getShape().toString()));
             icon.addAction(new ChangeCollectionEffectShape(collection));
-            icon.addAction(new OpenMenu(player, new CollectionSettings(player, collection)));
+            icon.addAction(new OpenMenu(player,this));
             icons.put(23, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.getMaterial(collection.getColor() + "_CONCRETE_POWDER"), ChatColor.GREEN + "Effect color",
                     ChatColor.DARK_GREEN + "Current color: " + ChatColor.GRAY + collection.getColor()));
             icon.addAction(new ChangeCollectionEffectColor(collection));
-            icon.addAction(new OpenMenu(player, new CollectionSettings(player, collection)));
+            icon.addAction(new OpenMenu(player, this));
             icons.put(24, icon);
         } {
-            Icon icon = new Icon(MiscUtils.CreateItem(MiscUtils.GetBooleanConcrete(collection.getEffect()), ChatColor.GREEN + "Toggle effect"));
+            Icon icon;
+            if (collection.getEffect()) {
+                icon = new Icon(MiscUtils.CreateItem(Material.GREEN_CONCRETE, ChatColor.GREEN + "Toggle effect",
+                        ChatColor.DARK_GREEN + "Effect currently ON",
+                        ChatColor.GRAY + "Particles will appear when fishing an item"));
+            } else {
+                icon = new Icon(MiscUtils.CreateItem(Material.RED_CONCRETE, ChatColor.RED + "Toggle effect",
+                        ChatColor.DARK_RED + "Effect currently OFF",
+                        ChatColor.GRAY + "No particles will appear when fishing an item"));
+            }
             icon.addAction(new ToggleCollectionEffect(collection));
-            icon.addAction(new OpenMenu(player, new CollectionSettings(player, collection)));
+            icon.addAction(new OpenMenu(player, this));
             icons.put(25, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.BARRIER, ChatColor.RED + "Delete collection",
                     ChatColor.DARK_RED + "Shift click to delete this collection"));
             icon.addShiftAction(new DeleteCollection(collection));
-            icon.addShiftAction(new OpenMenu(player, new LootCollections(player)));
+            icon.addShiftAction(new OpenMenu(player, new CollectionsList(player)));
             icons.put(19, icon);
         }
 
-        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Collection Settings]", 4*9, new LootCollections(player));
+        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Collection Settings]", 4*9, new CollectionsList(player));
     }
 }

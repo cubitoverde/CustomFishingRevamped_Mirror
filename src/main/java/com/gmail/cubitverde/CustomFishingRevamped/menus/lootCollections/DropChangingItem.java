@@ -1,9 +1,10 @@
 package com.gmail.cubitverde.CustomFishingRevamped.menus.lootCollections;
 
-import com.gmail.cubitverde.CustomFishingRevamped.actions.collections.settings.ChangeCollectionIcon;
+import com.gmail.cubitverde.CustomFishingRevamped.actions.collections.drop.ChangeDropItem;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Collection;
+import com.gmail.cubitverde.CustomFishingRevamped.objects.Drop;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Icon;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.GuiUtils;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.MiscUtils;
@@ -16,13 +17,15 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CollectionChangingIcon implements Menu {
+public class DropChangingItem implements Menu {
     private Player player;
     private Collection collection;
+    private Drop drop;
 
-    public CollectionChangingIcon(Player player, Collection collection) {
+    public DropChangingItem(Player player, Collection collection, Drop drop) {
         this.player = player;
         this.collection = collection;
+        this.drop = drop;
     }
 
     @Override
@@ -32,9 +35,9 @@ public class CollectionChangingIcon implements Menu {
         for (int i = 0; i < 36; i++) {
             ItemStack item = player.getInventory().getItem(i);
             if (item != null) {
-                Icon icon = new Icon(MiscUtils.CreateItem(item.getType(), ChatColor.GREEN + item.getType().toString()));
-                icon.addAction(new ChangeCollectionIcon(collection, item.getType()));
-                icon.addAction(new OpenMenu(player, new CollectionSettings(player, collection)));
+                Icon icon = new Icon(item);
+                icon.addAction(new ChangeDropItem(drop, item));
+                icon.addAction(new OpenMenu(player, new DropSettings(player, collection, drop)));
                 icons.put(i + 9, icon);
             } else {
                 Icon icon = new Icon(MiscUtils.CreateItem(Material.LIGHT_GRAY_STAINED_GLASS_PANE, " "));
@@ -42,6 +45,6 @@ public class CollectionChangingIcon implements Menu {
             }
         }
 
-        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Collection Icon]", 6*9, new CollectionSettings(player, collection));
+        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Drop Item]", 6*9, new CollectionItems(player, collection));
     }
 }
