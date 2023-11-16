@@ -28,21 +28,25 @@ public class MainMenu implements Menu {
         {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.TROPICAL_FISH, ChatColor.GREEN + "Fishing loot"));
             icon.addAction(new OpenMenu(player, new FishingLootMenu(player)));
-            icons.put(10, icon);
+            icons.put(11, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.CHEST, ChatColor.GREEN + "Loot collections"));
             icon.addAction(new OpenMenu(player, new CollectionsList(player)));
-            icons.put(12, icon);
+            icons.put(13, icon);
+        } {
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.DIAMOND, ChatColor.GREEN + "Fishing events"));
+            // icon.addAction(new OpenMenu(player, MENU));
+            icons.put(15, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.FISHING_ROD, ChatColor.GREEN + "Fishing settings"));
             // icon.addAction(new OpenMenu(player, MENU));
-            icons.put(14, icon);
-        }  {
+            icons.put(21, icon);
+        } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.COMMAND_BLOCK, ChatColor.GREEN + "Plugin settings"));
             // icon.addAction(new OpenMenu(player, MENU));
-            icons.put(16, icon);
+            icons.put(23, icon);
         }
 
-        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Main Menu]", 3*9, null);
+        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Main Menu]", 4*9, null);
     }
 }

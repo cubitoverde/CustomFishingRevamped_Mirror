@@ -41,7 +41,7 @@ public class DropCommands implements PageMenu {
 
         for (String command : commands) {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.COMMAND_BLOCK, ChatColor.GREEN + command,
-                    ChatColor.GRAY + "Shift click to delete this command"));
+                    ChatColor.DARK_RED + "Shift click to delete this command"));
             icon.addShiftAction(new DeleteDropCommand(drop, command));
             icon.addShiftAction(new OpenMenu(player, new DropCommands(player, collection, drop)));
             icons.add(icon);

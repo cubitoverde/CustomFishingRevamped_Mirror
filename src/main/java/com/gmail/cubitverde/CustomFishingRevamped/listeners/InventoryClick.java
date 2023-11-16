@@ -11,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 
 public class InventoryClick implements Listener {
     @EventHandler
-    private void setEvent (InventoryClickEvent event) {
+    private void setEvent(InventoryClickEvent event) {
         if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) {
             return;
         }

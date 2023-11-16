@@ -15,6 +15,6 @@ public class ChangeDropItem implements Action {
 
     @Override
     public void run() {
-        drop.setItem(item);
+        drop.setItem(item.clone());
     }
 }

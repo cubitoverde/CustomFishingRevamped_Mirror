@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class PlayerChat implements Listener {
     @EventHandler
-    private void setEvent (AsyncPlayerChatEvent event) {
+    private void setEvent(AsyncPlayerChatEvent event) {
         UUID uuid = event.getPlayer().getUniqueId();
         if (!CustomFishingRevamped.speakers.containsKey(uuid)) {
             return;

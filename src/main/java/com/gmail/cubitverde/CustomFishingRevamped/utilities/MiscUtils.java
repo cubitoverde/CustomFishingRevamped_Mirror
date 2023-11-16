@@ -1,7 +1,9 @@
 package com.gmail.cubitverde.CustomFishingRevamped.utilities;
 
+import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -69,6 +71,47 @@ public class MiscUtils {
         return null;
     }
 
+    public static Color GetColorFromString(String colorString) {
+        String string = colorString.toLowerCase();
+        switch (string) {
+            case "black": {
+                return Color.fromBGR(33, 29, 29);
+            } case "blue": {
+                return Color.fromBGR(169, 68, 60);
+            } case "brown": {
+                return Color.fromBGR(50, 84, 130);
+            } case "cyan": {
+                return Color.fromBGR(157, 156, 22);
+            } case "gray": {
+                return Color.fromBGR(82, 79, 71);
+            } case "green": {
+                return Color.fromBGR(21, 124, 93);
+            } case "light_blue": {
+                return Color.fromBGR(218, 179, 58);
+            } case "light_gray": {
+                return Color.fromBGR(151, 157, 156);
+            } case "lime": {
+                return Color.fromBGR(31, 199, 128);
+            } case "magenta": {
+                return Color.fromBGR(189, 79, 198);
+            } case "orange": {
+                return Color.fromBGR(29, 128, 249);
+            } case "pink": {
+                return Color.fromBGR(170, 140, 243);
+            } case "purple": {
+                return Color.fromBGR(183, 50, 137);
+            } case "red": {
+                return Color.fromBGR(38, 46, 176);
+            } case "white": {
+                return Color.fromBGR(255, 255, 249);
+            } case "yellow": {
+                return Color.fromBGR(61, 216, 255);
+            }
+        }
+
+        return null;
+    }
+
     public static LinkedList<FireworkEffect.Type> GetShapes() {
         LinkedList<FireworkEffect.Type> types = new LinkedList<>();
         types.add(FireworkEffect.Type.BURST);
@@ -88,5 +131,32 @@ public class MiscUtils {
         }
 
         return null;
+    }
+
+    public static void CloneItem(Item baseItem, Item newItem) {
+        newItem.setItemStack(baseItem.getItemStack());
+        newItem.setOwner(baseItem.getOwner());
+        newItem.setPickupDelay(baseItem.getPickupDelay());
+        newItem.setThrower(baseItem.getThrower());
+        newItem.setUnlimitedLifetime(baseItem.isUnlimitedLifetime());
+
+        newItem.setCustomNameVisible(baseItem.isCustomNameVisible());
+        newItem.setFallDistance(baseItem.getFallDistance());
+        newItem.setFireTicks(baseItem.getFireTicks());
+        newItem.setFreezeTicks(baseItem.getFreezeTicks());
+        newItem.setGlowing(baseItem.isGlowing());
+        newItem.setGravity(baseItem.hasGravity());
+        newItem.setInvulnerable(baseItem.isInvulnerable());
+        newItem.setLastDamageCause(baseItem.getLastDamageCause());
+        newItem.setPersistent(baseItem.isPersistent());
+        newItem.setPortalCooldown(baseItem.getPortalCooldown());
+        newItem.setSilent(baseItem.isSilent());
+        newItem.setVelocity(baseItem.getVelocity());
+        newItem.setVisibleByDefault(baseItem.isVisibleByDefault());
+        newItem.setVisualFire(baseItem.isVisualFire());
+
+        newItem.setCustomName(baseItem.getCustomName());
+
+        newItem.setOp(baseItem.isOp());
     }
 }
