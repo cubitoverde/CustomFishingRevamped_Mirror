@@ -5,10 +5,15 @@ import com.gmail.cubitverde.CustomFishingRevamped.objects.Collection;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Drop;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCollection;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.FishHook;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.Vector;
 
 import java.text.DecimalFormat;
 import java.util.LinkedList;
@@ -156,5 +161,53 @@ public class PluginUtils {
             collections.add(lootCollection.getCollection());
         }
         return collections;
+    }
+
+    public static void CloneItem(Item baseItem, Item newItem) {
+        newItem.setItemStack(baseItem.getItemStack());
+        newItem.setOwner(baseItem.getOwner());
+        newItem.setPickupDelay(baseItem.getPickupDelay());
+        newItem.setThrower(baseItem.getThrower());
+        newItem.setUnlimitedLifetime(baseItem.isUnlimitedLifetime());
+
+        newItem.setCustomNameVisible(baseItem.isCustomNameVisible());
+        newItem.setFallDistance(baseItem.getFallDistance());
+        newItem.setFireTicks(baseItem.getFireTicks());
+        newItem.setFreezeTicks(baseItem.getFreezeTicks());
+        newItem.setGlowing(baseItem.isGlowing());
+        newItem.setGravity(baseItem.hasGravity());
+        newItem.setInvulnerable(baseItem.isInvulnerable());
+        newItem.setLastDamageCause(baseItem.getLastDamageCause());
+        newItem.setPersistent(baseItem.isPersistent());
+        newItem.setPortalCooldown(baseItem.getPortalCooldown());
+        newItem.setSilent(baseItem.isSilent());
+        newItem.setVelocity(baseItem.getVelocity());
+        newItem.setVisibleByDefault(baseItem.isVisibleByDefault());
+        newItem.setVisualFire(baseItem.isVisualFire());
+
+        newItem.setCustomName(baseItem.getCustomName());
+
+        newItem.setOp(baseItem.isOp());
+    }
+
+    public static Vector GetFishedItemVelocityVector(Player player, FishHook fishHook) {
+        Location playerLoc = player.getLocation();
+        Location fishLoc = fishHook.getLocation();
+
+        double dX = playerLoc.getX() - fishLoc.getX();
+        double dY = playerLoc.getY() - fishLoc.getY();
+        double dZ = playerLoc.getZ() - fishLoc.getZ();
+
+        double lambda = 0.15;
+
+        return new Vector(dX, dY + 2, dZ).multiply(lambda);
+    }
+
+    public static Location GetAboveWaterFishHookLocation(Location location) {
+        while (location.getWorld().getBlockAt(location).getType().equals(Material.WATER)) {
+            location.add(0, 0.1, 0);
+        }
+
+        return location;
     }
 }

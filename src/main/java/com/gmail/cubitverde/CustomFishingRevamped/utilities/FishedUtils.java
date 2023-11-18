@@ -6,6 +6,7 @@ import com.gmail.cubitverde.CustomFishingRevamped.objects.Drop;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCollection;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.FishHook;
@@ -22,17 +23,7 @@ public class FishedUtils {
             return new LinkedList<>();
         }
 
-        Collection collection = globalLootCollection.getCollection();
-        if (collection.getEffect()) {
-            Location location = fishHook.getLocation();
-            Firework firework = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK);
-            FireworkMeta fireworkMeta = firework.getFireworkMeta();
-            fireworkMeta.setPower(0);
-            fireworkMeta.addEffect(FireworkEffect.builder().withColor(MiscUtils.GetColorFromString(collection.getColor())).with(collection.getShape()).build());
-            firework.setFireworkMeta(fireworkMeta);
-            firework.detonate();
-            CustomFishingRevamped.dropFireworks.add(firework);
-        }
+        SpawnFishedFireworkEffect(globalLootCollection.getCollection(), fishHook);
 
         LinkedList<Drop> droppedItems = GetRandomDropsFromLootCollection(globalLootCollection);
 
@@ -72,5 +63,18 @@ public class FishedUtils {
         }
 
         return drops;
+    }
+
+    public static void SpawnFishedFireworkEffect(Collection collection, FishHook fishHook) {
+        if (collection.getEffect()) {
+            Location location = PluginUtils.GetAboveWaterFishHookLocation(fishHook.getLocation());
+            Firework firework = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK);
+            FireworkMeta fireworkMeta = firework.getFireworkMeta();
+            fireworkMeta.setPower(0);
+            fireworkMeta.addEffect(FireworkEffect.builder().withColor(MiscUtils.GetColorFromString(collection.getColor())).with(collection.getShape()).build());
+            firework.setFireworkMeta(fireworkMeta);
+            firework.detonate();
+            CustomFishingRevamped.dropFireworks.add(firework);
+        }
     }
 }

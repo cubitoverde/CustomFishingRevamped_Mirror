@@ -4,6 +4,7 @@ import com.gmail.cubitverde.CustomFishingRevamped.CustomFishingRevamped;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Drop;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.FishedUtils;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.MiscUtils;
+import com.gmail.cubitverde.CustomFishingRevamped.utilities.PluginUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
@@ -19,7 +20,6 @@ public class PlayerFish implements Listener {
     private void setEvent(PlayerFishEvent event) {
         Player player = event.getPlayer();
         FishHook fishHook = event.getHook();
-        player.sendMessage("- " + event.getState());
 
         switch (event.getState()) {
             case FISHING: {
@@ -41,7 +41,8 @@ public class PlayerFish implements Listener {
 
                 for (Drop drop : drops) {
                     Item itemClone = location.getWorld().dropItem(location, drop.getItem());
-                    MiscUtils.CloneItem(item, itemClone);
+                    PluginUtils.CloneItem(item, itemClone);
+                    itemClone.setVelocity(PluginUtils.GetFishedItemVelocityVector(player, fishHook));
                     itemClone.setItemStack(drop.getItem());
                 }
 

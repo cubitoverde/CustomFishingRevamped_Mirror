@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -133,30 +134,5 @@ public class MiscUtils {
         return null;
     }
 
-    public static void CloneItem(Item baseItem, Item newItem) {
-        newItem.setItemStack(baseItem.getItemStack());
-        newItem.setOwner(baseItem.getOwner());
-        newItem.setPickupDelay(baseItem.getPickupDelay());
-        newItem.setThrower(baseItem.getThrower());
-        newItem.setUnlimitedLifetime(baseItem.isUnlimitedLifetime());
 
-        newItem.setCustomNameVisible(baseItem.isCustomNameVisible());
-        newItem.setFallDistance(baseItem.getFallDistance());
-        newItem.setFireTicks(baseItem.getFireTicks());
-        newItem.setFreezeTicks(baseItem.getFreezeTicks());
-        newItem.setGlowing(baseItem.isGlowing());
-        newItem.setGravity(baseItem.hasGravity());
-        newItem.setInvulnerable(baseItem.isInvulnerable());
-        newItem.setLastDamageCause(baseItem.getLastDamageCause());
-        newItem.setPersistent(baseItem.isPersistent());
-        newItem.setPortalCooldown(baseItem.getPortalCooldown());
-        newItem.setSilent(baseItem.isSilent());
-        newItem.setVelocity(baseItem.getVelocity());
-        newItem.setVisibleByDefault(baseItem.isVisibleByDefault());
-        newItem.setVisualFire(baseItem.isVisualFire());
-
-        newItem.setCustomName(baseItem.getCustomName());
-
-        newItem.setOp(baseItem.isOp());
-    }
 }
