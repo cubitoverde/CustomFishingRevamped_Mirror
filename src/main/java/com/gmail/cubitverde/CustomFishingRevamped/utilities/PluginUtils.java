@@ -2,6 +2,7 @@ package com.gmail.cubitverde.CustomFishingRevamped.utilities;
 
 import com.gmail.cubitverde.CustomFishingRevamped.CustomFishingRevamped;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Collection;
+import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Drop;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCollection;
 import org.bukkit.ChatColor;
@@ -209,5 +210,31 @@ public class PluginUtils {
         }
 
         return location;
+    }
+
+    public static ItemStack GetConditionalBucketItem(ConditionalBucket bucket) {
+        ItemStack item = MiscUtils.CreateItem(bucket.getIcon(), ChatColor.GREEN + bucket.getName());
+        ItemMeta itemMeta = item.getItemMeta();
+        LinkedList<String> lore = new LinkedList<>();
+
+        lore.add(ChatColor.DARK_GREEN + "Left click: " + ChatColor.GRAY + "View bucket");
+        lore.add(ChatColor.DARK_GREEN + "Right click: " + ChatColor.GRAY + "Settings");
+
+        lore.add(ChatColor.GRAY + " ");
+
+        lore.addAll(GetConditionalBucketInfoLore(bucket));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+
+    public static LinkedList<String> GetConditionalBucketInfoLore(ConditionalBucket bucket) {
+        LinkedList<String> lore = new LinkedList<>();
+
+        lore.add(ChatColor.DARK_GREEN + "Conditions added: " + ChatColor.GRAY + bucket.getConditions().size());
+        lore.add(ChatColor.DARK_GREEN + "Collections added: " + ChatColor.GRAY + bucket.getCollections().size());
+
+        return lore;
     }
 }

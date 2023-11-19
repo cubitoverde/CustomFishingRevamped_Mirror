@@ -7,6 +7,7 @@ import com.gmail.cubitverde.CustomFishingRevamped.listeners.PlayerChat;
 import com.gmail.cubitverde.CustomFishingRevamped.listeners.PlayerFish;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.MainMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Collection;
+import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCollection;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Speaker;
 import org.bukkit.ChatColor;
@@ -24,9 +25,11 @@ public class CustomFishingRevamped extends JavaPlugin {
     public static int dropId;
     public static int collectionId;
     public static int lootCollectionId;
+    public static int conditionalBucketId;
 
     public static LinkedList<Collection> collections = new LinkedList<>();
     public static LinkedList<LootCollection> globalLootCollections = new LinkedList<>();
+    public static LinkedList<ConditionalBucket> conditionalBuckets = new LinkedList<>();
 
     public static List<Firework> dropFireworks = new ArrayList<>();
 

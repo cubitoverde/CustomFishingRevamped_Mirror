@@ -3,6 +3,7 @@ package com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.MainMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.ConditionalBuckets;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.globalLoot.GlobalLootCollections;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Icon;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.GuiUtils;
@@ -32,7 +33,7 @@ public class FishingLootMenu implements Menu {
             icons.put(11, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.PUFFERFISH, ChatColor.GREEN + "Conditional loot"));
-            // icon.addAction(new OpenMenu(player, new CollectionsList(player)));
+            icon.addAction(new OpenMenu(player, new ConditionalBuckets(player)));
             icons.put(15, icon);
         }
 
