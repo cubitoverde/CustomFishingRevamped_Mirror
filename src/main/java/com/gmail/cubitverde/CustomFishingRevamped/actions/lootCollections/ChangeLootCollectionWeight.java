@@ -1,20 +1,19 @@
-package com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.global;
+package com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections;
 
 import com.gmail.cubitverde.CustomFishingRevamped.CustomFishingRevamped;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.SpeakerAction;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
-import com.gmail.cubitverde.CustomFishingRevamped.objects.Drop;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCollection;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Speaker;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class ChangeGlobalLootCollectionWeight implements SpeakerAction {
+public class ChangeLootCollectionWeight implements SpeakerAction {
     private Player player;
     private LootCollection lootCollection;
     private Menu menu;
 
-    public ChangeGlobalLootCollectionWeight(Player player, LootCollection lootCollection, Menu menu) {
+    public ChangeLootCollectionWeight(Player player, LootCollection lootCollection, Menu menu) {
         this.player = player;
         this.lootCollection = lootCollection;
         this.menu = menu;

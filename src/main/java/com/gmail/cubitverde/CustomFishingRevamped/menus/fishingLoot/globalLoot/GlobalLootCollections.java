@@ -39,7 +39,7 @@ public class GlobalLootCollections implements PageMenu {
             icons.add(icon);
         }
 
-        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Global Loot]", 6*9,
+        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Global Loot Collections]", 6*9,
                 new FishingLootMenu(player), page, new OpenMenu(player, new SelectNewGlobalLootCollection(player)), false, this);
     }
 }

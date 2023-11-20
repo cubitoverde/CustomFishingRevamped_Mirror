@@ -156,6 +156,15 @@ public class PluginUtils {
         return false;
     }
 
+    public static boolean CheckIfCollectionInListLootCollections(Collection collection, LinkedList<LootCollection> lootCollections) {
+        LinkedList<Collection> collections = new LinkedList<>();
+        for (LootCollection lootCollection : lootCollections) {
+            collections.add(lootCollection.getCollection());
+        }
+
+        return CheckIfCollectionInList(collection, collections);
+    }
+
     public static LinkedList<Collection> GetGlobalCollections() {
         LinkedList<Collection> collections = new LinkedList<>();
         for (LootCollection lootCollection : CustomFishingRevamped.globalLootCollections) {
@@ -236,5 +245,52 @@ public class PluginUtils {
         lore.add(ChatColor.DARK_GREEN + "Collections: " + ChatColor.GRAY + bucket.getCollections().size());
 
         return lore;
+    }
+
+    public static ItemStack GetBucketCollectionItem(ConditionalBucket bucket, LootCollection lootCollection) {
+        Collection collection = lootCollection.getCollection();
+        ItemStack item = MiscUtils.CreateItem(collection.getIcon(), ChatColor.GREEN + collection.getName());
+        ItemMeta itemMeta = item.getItemMeta();
+        LinkedList<String> lore = new LinkedList<>();
+
+        lore.add(ChatColor.DARK_GREEN + "Left click: " + ChatColor.GRAY + "View items");
+        lore.add(ChatColor.DARK_GREEN + "Right click: " + ChatColor.GRAY + "Settings");
+
+        lore.add(ChatColor.GRAY + " ");
+
+        lore.addAll(GetBucketCollectionInfoLore(bucket, lootCollection));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+
+    public static LinkedList<String> GetBucketCollectionInfoLore(ConditionalBucket bucket, LootCollection lootCollection) {
+        LinkedList<String> lore = new LinkedList<>();
+
+        lore.add(ChatColor.DARK_GREEN + "Collection weight: " + ChatColor.GRAY + lootCollection.getWeight());
+        lore.add(ChatColor.DARK_GREEN + "Total bucket weight: " + ChatColor.GRAY + GetBucketTotalWeight(bucket));
+
+        lore.add(ChatColor.DARK_GREEN + "Drop chance: " + ChatColor.WHITE + new DecimalFormat("#%.##").format(GetDropChanceInBucket(lootCollection, bucket)));
+
+        lore.add(ChatColor.DARK_GREEN + "Luck modifier: " + ChatColor.GRAY + GetIntModifierAsString(lootCollection.getLuckModifier()));
+        lore.add(ChatColor.DARK_GREEN + "Items dropped: " + ChatColor.GRAY + lootCollection.getItemDrops());
+
+        return lore;
+    }
+
+    public static int GetBucketTotalWeight(ConditionalBucket bucket) {
+        int total = 0;
+        for (LootCollection lootCollection : bucket.getCollections()) {
+            total += lootCollection.getWeight();
+        }
+        return total;
+    }
+
+    public static double GetDropChanceInBucket(LootCollection lootCollection, ConditionalBucket bucket) {
+        int weight = lootCollection.getWeight();
+        int total = GetBucketTotalWeight(bucket);
+
+        return ((double) weight) / ((double) total);
     }
 }

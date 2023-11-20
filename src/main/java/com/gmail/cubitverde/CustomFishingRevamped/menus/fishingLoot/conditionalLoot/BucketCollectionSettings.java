@@ -1,12 +1,15 @@
-package com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.globalLoot;
+package com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot;
 
 import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.ChangeLootCollectionDropsAmount;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.ChangeLootCollectionLuckModifier;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.ChangeLootCollectionWeight;
+import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.conditional.RemoveBucketCollection;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.global.RemoveGlobalLootCollection;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.globalLoot.GlobalLootCollections;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Collection;
+import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Icon;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCollection;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.GuiUtils;
@@ -20,12 +23,14 @@ import org.bukkit.inventory.Inventory;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GlobalLootCollectionSettings implements Menu {
+public class BucketCollectionSettings implements Menu {
     private Player player;
+    private ConditionalBucket bucket;
     private LootCollection lootCollection;
 
-    public GlobalLootCollectionSettings(Player player, LootCollection lootCollection) {
+    public BucketCollectionSettings(Player player, ConditionalBucket bucket, LootCollection lootCollection) {
         this.player = player;
+        this.bucket = bucket;
         this.lootCollection = lootCollection;
     }
 
@@ -39,7 +44,7 @@ public class GlobalLootCollectionSettings implements Menu {
             icons.put(10, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.PAPER, ChatColor.GREEN + "Information",
-                    PluginUtils.GetGlobalLootModifierInfoLore(lootCollection)));
+                    PluginUtils.GetBucketCollectionInfoLore(bucket, lootCollection)));
             icons.put(11, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.CLOCK, ChatColor.GREEN + "Change weight",
@@ -73,11 +78,11 @@ public class GlobalLootCollectionSettings implements Menu {
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.BARRIER, ChatColor.RED + "Remove collection",
                     ChatColor.DARK_RED + "Shift click to remove this collection"));
-            icon.addShiftAction(new RemoveGlobalLootCollection(lootCollection));
-            icon.addShiftAction(new OpenMenu(player, new GlobalLootCollections(player)));
+            icon.addShiftAction(new RemoveBucketCollection(bucket, lootCollection));
+            icon.addShiftAction(new OpenMenu(player, new BucketCollections(player, bucket)));
             icons.put(19, icon);
         }
 
-        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Collection Settings]", 4*9, new GlobalLootCollections(player));
+        return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Collection Settings]", 4*9, new BucketCollections(player, bucket));
     }
 }
