@@ -232,8 +232,8 @@ public class PluginUtils {
     public static LinkedList<String> GetConditionalBucketInfoLore(ConditionalBucket bucket) {
         LinkedList<String> lore = new LinkedList<>();
 
-        lore.add(ChatColor.DARK_GREEN + "Conditions added: " + ChatColor.GRAY + bucket.getConditions().size());
-        lore.add(ChatColor.DARK_GREEN + "Collections added: " + ChatColor.GRAY + bucket.getCollections().size());
+        lore.add(ChatColor.DARK_GREEN + "Conditions: " + ChatColor.GRAY + bucket.getConditions().size());
+        lore.add(ChatColor.DARK_GREEN + "Collections: " + ChatColor.GRAY + bucket.getCollections().size());
 
         return lore;
     }

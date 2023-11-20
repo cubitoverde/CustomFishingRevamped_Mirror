@@ -37,7 +37,7 @@ public class ConditionalBuckets implements PageMenu {
         for (ConditionalBucket bucket : CustomFishingRevamped.conditionalBuckets) {
             Icon icon = new Icon(PluginUtils.GetConditionalBucketItem(bucket));
             // icon.addLAction(new OpenMenu(player, new GlobalLootCollectionItems(player, lootCollection)));
-            // icon.addRAction(new OpenMenu(player, new GlobalLootCollectionSettings(player, lootCollection)));
+            icon.addRAction(new OpenMenu(player, new ConditionalBucketSettings(player, bucket)));
             icons.add(icon);
         }
 
