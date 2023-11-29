@@ -1,7 +1,6 @@
-package com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot;
+package com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.collections;
 
 import com.gmail.cubitverde.CustomFishingRevamped.menus.PageMenu;
-import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.globalLoot.GlobalLootCollections;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.*;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.GuiUtils;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.PluginUtils;

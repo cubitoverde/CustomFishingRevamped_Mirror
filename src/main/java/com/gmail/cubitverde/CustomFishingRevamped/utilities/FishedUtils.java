@@ -6,7 +6,6 @@ import com.gmail.cubitverde.CustomFishingRevamped.objects.Drop;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCollection;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.FishHook;

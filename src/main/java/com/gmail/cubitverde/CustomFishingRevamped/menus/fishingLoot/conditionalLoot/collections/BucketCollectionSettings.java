@@ -1,13 +1,11 @@
-package com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot;
+package com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.collections;
 
 import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.ChangeLootCollectionDropsAmount;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.ChangeLootCollectionLuckModifier;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.ChangeLootCollectionWeight;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.conditional.RemoveBucketCollection;
-import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.global.RemoveGlobalLootCollection;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
-import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.globalLoot.GlobalLootCollections;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Collection;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Icon;

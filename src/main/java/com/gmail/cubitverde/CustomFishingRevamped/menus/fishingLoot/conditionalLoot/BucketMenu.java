@@ -1,8 +1,9 @@
 package com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot;
 
-import com.gmail.cubitverde.CustomFishingRevamped.actions.lootCollections.conditional.ChangeBucketName;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.collections.BucketCollections;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.BucketConditions;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Icon;
 import com.gmail.cubitverde.CustomFishingRevamped.utilities.GuiUtils;
@@ -30,12 +31,12 @@ public class BucketMenu implements Menu {
 
         {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.COMPARATOR, ChatColor.GREEN + "Bucket conditions"));
-            // icon.addAction(new ChangeBucketName(player, bucket, this));
-            icons.put(11, icon);
+            icon.addAction(new OpenMenu(player, new BucketConditions(player, bucket)));
+            icons.put(15, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.CHEST, ChatColor.GREEN + "Bucket collections"));
             icon.addAction(new OpenMenu(player, new BucketCollections(player, bucket)));
-            icons.put(15, icon);
+            icons.put(11, icon);
         }
 
         return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Bucket Menu]", 3*9, new ConditionalBuckets(player));

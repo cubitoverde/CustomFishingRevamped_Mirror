@@ -40,6 +40,20 @@ public class MiscUtils {
         return itemStack;
     }
 
+    public static ItemStack AddLore(ItemStack itemStack, String... lore) {
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        List<String> loreList;
+        if (itemMeta.getLore() == null) {
+            loreList = new ArrayList<>();
+        } else {
+            loreList = itemMeta.getLore();
+        }
+        Collections.addAll(loreList, lore);
+        itemMeta.setLore(loreList);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
     public static LinkedList<String> GetColors() {
         LinkedList<String> colors = new LinkedList<>();
         colors.add("BLACK");

@@ -24,7 +24,7 @@ public class AddBucketCollection implements Action {
         if (PluginUtils.CheckIfCollectionInListLootCollections(collection, bucket.getCollections())) {
             player.sendMessage(ChatColor.DARK_RED + "That collection is " + ChatColor.RED + "already part " + ChatColor.DARK_RED + "of the bucket.");
         } else {
-            bucket.getCollections().add(new LootCollection(collection));
+            bucket.addCollection(new LootCollection(collection));
         }
     }
 }

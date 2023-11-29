@@ -4,12 +4,12 @@ import com.gmail.cubitverde.CustomFishingRevamped.conditions.Condition;
 
 public class LootCondition {
     private Condition condition;
-    private boolean isActive;
+    private boolean isEnabled;
     private boolean isWhitelist;
 
     public LootCondition(Condition condition) {
         this.condition = condition;
-        this.isActive = false;
+        this.isEnabled = true;
         this.isWhitelist = true;
     }
 
@@ -21,12 +21,20 @@ public class LootCondition {
         this.condition = condition;
     }
 
-    public boolean getActive() {
-        return isActive;
+    public boolean isConditionMet() {
+        return condition.isMet();
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public boolean getEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public void toggleEnabled() {
+        isEnabled = !isEnabled;
     }
 
     public boolean getWhitelist() {
@@ -35,5 +43,9 @@ public class LootCondition {
 
     public void setWhitelist(boolean whitelist) {
         isWhitelist = whitelist;
+    }
+
+    public void toggleWhitelist() {
+        isWhitelist = !isWhitelist;
     }
 }
