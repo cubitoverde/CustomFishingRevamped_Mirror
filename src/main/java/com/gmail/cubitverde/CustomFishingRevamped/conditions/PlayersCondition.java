@@ -1,10 +1,9 @@
 package com.gmail.cubitverde.CustomFishingRevamped.conditions;
 
 import com.gmail.cubitverde.CustomFishingRevamped.CustomFishingRevamped;
-import com.gmail.cubitverde.CustomFishingRevamped.actions.conditions.PlayersConditionSettings;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.players.PlayersConditionSettings;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
-import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCollection;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCondition;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

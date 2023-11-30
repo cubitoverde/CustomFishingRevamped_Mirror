@@ -1,7 +1,10 @@
-package com.gmail.cubitverde.CustomFishingRevamped.actions.conditions;
+package com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.players;
 
+import com.gmail.cubitverde.CustomFishingRevamped.actions.conditions.players.ModifyMaxPlayers;
+import com.gmail.cubitverde.CustomFishingRevamped.actions.conditions.players.ModifyMinPlayers;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.conditions.Condition;
+import com.gmail.cubitverde.CustomFishingRevamped.conditions.PlayersCondition;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.collections.BucketCollections;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.BucketConditions;
@@ -32,7 +35,7 @@ public class PlayersConditionSettings implements Menu {
     @Override
     public Inventory getMenu() {
         Map<Integer, Icon> icons = new HashMap<>();
-        Condition condition = lootCondition.getCondition();
+        PlayersCondition condition = (PlayersCondition) lootCondition.getCondition();
 
         {
             Icon icon = new Icon(ConditionUtils.AddLootConditionInfoToItem(ConditionUtils.GetConditionInfoItem(condition, false), lootCondition, false));
@@ -45,6 +48,29 @@ public class PlayersConditionSettings implements Menu {
             Icon icon = ConditionUtils.GetConditionSettingsWhitelistIcon(lootCondition);
             icon.addAction(new OpenMenu(player, this));
             icons.put(20, icon);
+        } {
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.PAPER, ChatColor.GREEN + "Online players",
+                    ChatColor.DARK_GREEN + "Minimum: " + ChatColor.WHITE + condition.getMinPlayers(),
+                    ChatColor.DARK_GREEN + "Maximum: " + ChatColor.WHITE + condition.getMaxPlayers()));
+            icons.put(11, icon);
+        } {
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.BLUE_WOOL, ChatColor.GREEN + "Minimum players",
+                    ChatColor.DARK_GREEN + "Current minimum: " + ChatColor.WHITE + condition.getMinPlayers(),
+                    ChatColor.DARK_GREEN + "Left click: " + ChatColor.GRAY + "Increase by 1",
+                    ChatColor.DARK_GREEN + "Right click: " + ChatColor.GRAY + "Reduce by 1"));
+            icon.addLAction(new ModifyMinPlayers(condition, 1));
+            icon.addRAction(new ModifyMinPlayers(condition, -1));
+            icon.addAction(new OpenMenu(player, this));
+            icons.put(13, icon);
+        } {
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.RED_WOOL, ChatColor.GREEN + "Maximum players",
+                    ChatColor.DARK_GREEN + "Current maximum: " + ChatColor.WHITE + condition.getMaxPlayers(),
+                    ChatColor.DARK_GREEN + "Left click: " + ChatColor.GRAY + "Increase by 1",
+                    ChatColor.DARK_GREEN + "Right click: " + ChatColor.GRAY + "Reduce by 1"));
+            icon.addLAction(new ModifyMaxPlayers(condition, 1));
+            icon.addRAction(new ModifyMaxPlayers(condition, -1));
+            icon.addAction(new OpenMenu(player, this));
+            icons.put(14, icon);
         }
 
         return GuiUtils.BuildInventory(player, icons, ChatColor.DARK_GREEN + "[Condition Settings]", 4*9, new BucketConditions(player, bucket));

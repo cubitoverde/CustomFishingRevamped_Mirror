@@ -1,20 +1,13 @@
 package com.gmail.cubitverde.CustomFishingRevamped.utilities;
 
-import com.gmail.cubitverde.CustomFishingRevamped.CustomFishingRevamped;
-import com.gmail.cubitverde.CustomFishingRevamped.actions.conditions.PlayersConditionSettings;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.conditions.ToggleLootConditionEnabled;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.conditions.ToggleLootConditionWhitelist;
-import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.conditions.Condition;
 import com.gmail.cubitverde.CustomFishingRevamped.conditions.PlayersCondition;
-import com.gmail.cubitverde.CustomFishingRevamped.menus.MainMenu;
-import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
-import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Icon;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCondition;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedList;
