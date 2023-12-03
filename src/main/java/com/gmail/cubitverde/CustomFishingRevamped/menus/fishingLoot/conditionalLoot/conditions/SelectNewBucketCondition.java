@@ -41,7 +41,7 @@ public class SelectNewBucketCondition implements Menu {
 
         for (int i = 0; i < availableConditions.size(); i++) {
             Condition condition = availableConditions.get(i);
-            Icon icon = new Icon(ConditionUtils.GetConditionInfoItem(condition, true));
+            Icon icon = new Icon(ConditionUtils.GetConditionInfoItem(condition, true, false));
             icon.addAction(new AddNewConditionToBucket(bucket, condition));
             icon.addAction(new OpenMenu(player, new BucketConditions(player, bucket)));
             icons.put(GuiUtils.InventoryInside(6*9).get(i), icon);

@@ -38,7 +38,7 @@ public class PlayersConditionSettings implements Menu {
         PlayersCondition condition = (PlayersCondition) lootCondition.getCondition();
 
         {
-            Icon icon = new Icon(ConditionUtils.AddLootConditionInfoToItem(ConditionUtils.GetConditionInfoItem(condition, false), lootCondition, false));
+            Icon icon = new Icon(ConditionUtils.AddLootConditionInfoToItem(ConditionUtils.GetConditionInfoItem(condition, true, false), lootCondition, false));
             icons.put(10, icon);
         } {
             Icon icon = ConditionUtils.GetConditionSettingsEnableIcon(lootCondition);
@@ -50,8 +50,7 @@ public class PlayersConditionSettings implements Menu {
             icons.put(20, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.PAPER, ChatColor.GREEN + "Online players",
-                    ChatColor.DARK_GREEN + "Minimum: " + ChatColor.WHITE + condition.getMinPlayers(),
-                    ChatColor.DARK_GREEN + "Maximum: " + ChatColor.WHITE + condition.getMaxPlayers()));
+                    condition.getSummary()));
             icons.put(11, icon);
         } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.BLUE_WOOL, ChatColor.GREEN + "Minimum players",

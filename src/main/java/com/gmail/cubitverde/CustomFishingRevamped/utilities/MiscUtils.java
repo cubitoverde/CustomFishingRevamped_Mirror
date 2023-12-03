@@ -32,7 +32,7 @@ public class MiscUtils {
         return itemStack;
     }
 
-    public static ItemStack CreateItem(Material material, String name, LinkedList<String> lore) {
+    public static ItemStack CreateItem(Material material, String name, List<String> lore) {
         ItemStack itemStack = CreateItem(material, name);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setLore(lore);

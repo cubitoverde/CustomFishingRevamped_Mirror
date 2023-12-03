@@ -42,7 +42,7 @@ public class BucketConditions implements PageMenu {
 
         for (LootCondition lootCondition : bucket.getConditions()) {
             Condition condition = lootCondition.getCondition();
-            Icon icon = new Icon(ConditionUtils.AddLootConditionInfoToItem(ConditionUtils.GetConditionInfoItem(condition, false), lootCondition, true));
+            Icon icon = new Icon(ConditionUtils.AddLootConditionInfoToItem(ConditionUtils.GetConditionInfoItem(condition, false, true), lootCondition, true));
             icon.addAction(new OpenMenu(player, condition.getSettingsMenu(player, bucket, lootCondition)));
             icons.add(icon);
         }

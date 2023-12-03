@@ -21,11 +21,17 @@ public class ConditionUtils {
         return availableConditions;
     }
 
-    public static ItemStack GetConditionInfoItem(Condition condition, boolean addDescription) {
+    public static ItemStack GetConditionInfoItem(Condition condition, boolean addDescription, boolean addSummary) {
         ItemStack itemStack = MiscUtils.CreateItem(condition.getIcon(), ChatColor.GREEN + condition.getName());
         if (addDescription) {
             for (String loreLine : condition.getDescription()) {
                 MiscUtils.AddLore(itemStack, ChatColor.GRAY + loreLine);
+            }
+        }
+
+        if (addSummary) {
+            for (String loreLine : condition.getSummary()) {
+                MiscUtils.AddLore(itemStack, loreLine);
             }
         }
 

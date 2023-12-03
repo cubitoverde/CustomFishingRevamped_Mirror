@@ -5,6 +5,7 @@ import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalL
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCondition;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -50,6 +51,14 @@ public class PlayersCondition implements Condition {
     @Override
     public List<String> getDescription() {
         return description;
+    }
+
+    @Override
+    public List<String> getSummary() {
+        List<String> summary = new ArrayList<>();
+        summary.add(ChatColor.DARK_GREEN + "Minimum: " + ChatColor.WHITE + getMinPlayers());
+        summary.add(ChatColor.DARK_GREEN + "Maximum: " + ChatColor.WHITE + getMaxPlayers());
+        return summary;
     }
 
     @Override

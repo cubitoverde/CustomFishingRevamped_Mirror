@@ -14,5 +14,6 @@ public interface Condition {
     Material getIcon();
     String getName();
     List<String> getDescription();
+    List<String> getSummary();
     Menu getSettingsMenu(Player player, ConditionalBucket bucket, LootCondition lootCondition);
 }
