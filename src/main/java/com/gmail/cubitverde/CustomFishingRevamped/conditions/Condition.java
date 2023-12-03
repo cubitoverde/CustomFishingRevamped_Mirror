@@ -4,12 +4,13 @@ import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCondition;
 import org.bukkit.Material;
+import org.bukkit.entity.FishHook;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
 public interface Condition {
-    boolean isMet();
+    boolean isMet(Player player, FishHook fishHook);
 
     Material getIcon();
     String getName();

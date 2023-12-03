@@ -1,22 +1,33 @@
 package com.gmail.cubitverde.CustomFishingRevamped.utilities;
 
+import com.gmail.cubitverde.CustomFishingRevamped.actions.collections.settings.DeleteCollection;
+import com.gmail.cubitverde.CustomFishingRevamped.actions.conditions.RemoveBucketCondition;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.conditions.ToggleLootConditionEnabled;
 import com.gmail.cubitverde.CustomFishingRevamped.actions.conditions.ToggleLootConditionWhitelist;
+import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.conditions.Condition;
+import com.gmail.cubitverde.CustomFishingRevamped.conditions.PermissionCondition;
 import com.gmail.cubitverde.CustomFishingRevamped.conditions.PlayersCondition;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.BucketConditions;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.lootCollections.CollectionsList;
+import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.Icon;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCondition;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedList;
+import java.util.Map;
 
 public class ConditionUtils {
     public static LinkedList<Condition> GetAvailableConditions() {
         LinkedList<Condition> availableConditions = new LinkedList<>();
 
         availableConditions.add(new PlayersCondition());
+        availableConditions.add(new PermissionCondition());
 
         return availableConditions;
     }
@@ -84,5 +95,32 @@ public class ConditionUtils {
         icon.addAction(new ToggleLootConditionWhitelist(lootCondition));
 
         return icon;
+    }
+
+    public static void AddBaseConditionSettingsIcons(Map<Integer, Icon> icons, Player player, LootCondition lootCondition, ConditionalBucket bucket,
+                                                     int enableInt, int whitelistInt, int deleteInt, Menu thisMenu) {
+        Condition condition = lootCondition.getCondition();
+        {
+            Icon icon = new Icon(ConditionUtils.AddLootConditionInfoToItem(ConditionUtils.GetConditionInfoItem(condition, true, false), lootCondition, false));
+            icons.put(10, icon);
+        } {
+            Icon icon = ConditionUtils.GetConditionSettingsEnableIcon(lootCondition);
+            icon.addAction(new OpenMenu(player, thisMenu));
+            icons.put(enableInt, icon);
+        } {
+            Icon icon = ConditionUtils.GetConditionSettingsWhitelistIcon(lootCondition);
+            icon.addAction(new OpenMenu(player, thisMenu));
+            icons.put(whitelistInt, icon);
+        } {
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.PAPER, ChatColor.GREEN + condition.getName(),
+                    condition.getSummary()));
+            icons.put(11, icon);
+        } {
+            Icon icon = new Icon(MiscUtils.CreateItem(Material.BARRIER, ChatColor.RED + "Delete condition",
+                    ChatColor.DARK_RED + "Shift click to delete this condition"));
+            icon.addShiftAction(new RemoveBucketCondition(bucket, lootCondition));
+            icon.addShiftAction(new OpenMenu(player, new BucketConditions(player, bucket)));
+            icons.put(deleteInt, icon);
+        }
     }
 }

@@ -37,22 +37,10 @@ public class PlayersConditionSettings implements Menu {
         Map<Integer, Icon> icons = new HashMap<>();
         PlayersCondition condition = (PlayersCondition) lootCondition.getCondition();
 
+        ConditionUtils.AddBaseConditionSettingsIcons(icons, player, lootCondition, bucket,
+                19, 20, 21, this);
+
         {
-            Icon icon = new Icon(ConditionUtils.AddLootConditionInfoToItem(ConditionUtils.GetConditionInfoItem(condition, true, false), lootCondition, false));
-            icons.put(10, icon);
-        } {
-            Icon icon = ConditionUtils.GetConditionSettingsEnableIcon(lootCondition);
-            icon.addAction(new OpenMenu(player, this));
-            icons.put(19, icon);
-        } {
-            Icon icon = ConditionUtils.GetConditionSettingsWhitelistIcon(lootCondition);
-            icon.addAction(new OpenMenu(player, this));
-            icons.put(20, icon);
-        } {
-            Icon icon = new Icon(MiscUtils.CreateItem(Material.PAPER, ChatColor.GREEN + "Online players",
-                    condition.getSummary()));
-            icons.put(11, icon);
-        } {
             Icon icon = new Icon(MiscUtils.CreateItem(Material.BLUE_WOOL, ChatColor.GREEN + "Minimum players",
                     ChatColor.DARK_GREEN + "Current minimum: " + ChatColor.WHITE + condition.getMinPlayers(),
                     ChatColor.DARK_GREEN + "Left click: " + ChatColor.GRAY + "Increase by 1",

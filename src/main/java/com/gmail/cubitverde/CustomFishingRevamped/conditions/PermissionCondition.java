@@ -1,8 +1,9 @@
 package com.gmail.cubitverde.CustomFishingRevamped.conditions;
 
 import com.gmail.cubitverde.CustomFishingRevamped.CustomFishingRevamped;
-import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.players.PlayersConditionSettings;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.permission.PermissionConditionSettings;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.players.PlayersConditionSettings;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCondition;
 import org.bukkit.ChatColor;
@@ -13,30 +14,26 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayersCondition implements Condition {
+public class PermissionCondition implements Condition {
     private Material icon;
     private String name;
     private List<String> description;
 
-    private int minPlayers;
-    private int maxPlayers;
+    private String permission;
 
-    public PlayersCondition() {
-        icon = Material.PLAYER_HEAD;
-        name = "Online players";
+    public PermissionCondition() {
+        icon = Material.OAK_SIGN;
+        name = "Permission";
         description = new ArrayList<>();
-        description.add("Select a minimum and maximum");
-        description.add("amount of online players.");
+        description.add("Choose a permission to check.");
+        description.add("in the player that is fishing.");
 
-        minPlayers = 1;
-        maxPlayers = 10;
+        permission = "fishing.bonusloot";
     }
 
     @Override
     public boolean isMet(Player player, FishHook fishHook) {
-        int onlinePlayers = CustomFishingRevamped.plugin.getServer().getOnlinePlayers().size();
-
-        return minPlayers <= onlinePlayers && onlinePlayers <= maxPlayers;
+        return player.hasPermission(permission);
     }
 
     @Override
@@ -57,29 +54,20 @@ public class PlayersCondition implements Condition {
     @Override
     public List<String> getSummary() {
         List<String> summary = new ArrayList<>();
-        summary.add(ChatColor.DARK_GREEN + "Minimum: " + ChatColor.WHITE + minPlayers);
-        summary.add(ChatColor.DARK_GREEN + "Maximum: " + ChatColor.WHITE + maxPlayers);
+        summary.add(ChatColor.DARK_GREEN + "Permission: " + ChatColor.WHITE + permission);
         return summary;
     }
 
     @Override
     public Menu getSettingsMenu(Player player, ConditionalBucket bucket, LootCondition lootCondition) {
-        return new PlayersConditionSettings(player, bucket, lootCondition);
+        return new PermissionConditionSettings(player, bucket, lootCondition);
     }
 
-    public int getMinPlayers() {
-        return minPlayers;
+    public String getPermission() {
+        return permission;
     }
 
-    public void setMinPlayers(int minPlayers) {
-        this.minPlayers = minPlayers;
-    }
-
-    public int getMaxPlayers() {
-        return maxPlayers;
-    }
-
-    public void setMaxPlayers(int maxPlayers) {
-        this.maxPlayers = maxPlayers;
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 }

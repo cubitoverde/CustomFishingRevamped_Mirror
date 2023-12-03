@@ -1,6 +1,8 @@
 package com.gmail.cubitverde.CustomFishingRevamped.objects;
 
 import com.gmail.cubitverde.CustomFishingRevamped.conditions.Condition;
+import org.bukkit.entity.FishHook;
+import org.bukkit.entity.Player;
 
 public class LootCondition {
     private Condition condition;
@@ -21,8 +23,8 @@ public class LootCondition {
         this.condition = condition;
     }
 
-    public boolean isConditionMet() {
-        return condition.isMet();
+    public boolean isConditionMet(Player player, FishHook fishHook) {
+        return condition.isMet(player, fishHook);
     }
 
     public boolean getEnabled() {
