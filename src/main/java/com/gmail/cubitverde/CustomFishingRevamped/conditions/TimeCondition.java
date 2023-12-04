@@ -1,11 +1,10 @@
 package com.gmail.cubitverde.CustomFishingRevamped.conditions;
 
-import com.gmail.cubitverde.CustomFishingRevamped.CustomFishingRevamped;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
-import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.permission.PermissionConditionSettings;
-import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.players.PlayersConditionSettings;
+import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.time.TimeConditionSettings;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.ConditionalBucket;
 import com.gmail.cubitverde.CustomFishingRevamped.objects.LootCondition;
+import com.gmail.cubitverde.CustomFishingRevamped.utilities.MiscUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.FishHook;
@@ -14,26 +13,29 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PermissionCondition implements Condition {
+public class TimeCondition implements Condition {
     private Material icon;
     private String name;
     private List<String> description;
 
-    private String permission;
+    private int minTime;
+    private int maxTime;
 
-    public PermissionCondition() {
-        icon = Material.OAK_SIGN;
-        name = "Permission";
+    public TimeCondition() {
+        icon = Material.CLOCK;
+        name = "In-game time";
         description = new ArrayList<>();
-        description.add("Choose a permission to check");
-        description.add("in the player that is fishing.");
+        description.add("Select an in-game timeframe.");
 
-        permission = "fishing.bonusloot";
+        minTime = 0;
+        maxTime = 12000;
     }
 
     @Override
     public boolean isMet(Player player, FishHook fishHook) {
-        return player.hasPermission(permission);
+        long time = player.getWorld().getTime();
+
+        return minTime <= time && time <= maxTime;
     }
 
     @Override
@@ -54,20 +56,29 @@ public class PermissionCondition implements Condition {
     @Override
     public List<String> getSummary() {
         List<String> summary = new ArrayList<>();
-        summary.add(ChatColor.DARK_GREEN + "Permission: " + ChatColor.WHITE + permission);
+        summary.add(ChatColor.DARK_GREEN + "Start: " + ChatColor.WHITE + MiscUtils.ConvertTicksToTimeQuarters(minTime));
+        summary.add(ChatColor.DARK_GREEN + "End: " + ChatColor.WHITE + MiscUtils.ConvertTicksToTimeQuarters(maxTime));
         return summary;
     }
 
     @Override
     public Menu getSettingsMenu(Player player, ConditionalBucket bucket, LootCondition lootCondition) {
-        return new PermissionConditionSettings(player, bucket, lootCondition);
+        return new TimeConditionSettings(player, bucket, lootCondition);
     }
 
-    public String getPermission() {
-        return permission;
+    public int getMinTime() {
+        return minTime;
     }
 
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public void setMinTime(int minTime) {
+        this.minTime = minTime;
+    }
+
+    public int getMaxTime() {
+        return maxTime;
+    }
+
+    public void setMaxTime(int maxTime) {
+        this.maxTime = maxTime;
     }
 }

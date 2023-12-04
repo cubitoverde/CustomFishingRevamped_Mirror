@@ -8,6 +8,7 @@ import com.gmail.cubitverde.CustomFishingRevamped.actions.menus.OpenMenu;
 import com.gmail.cubitverde.CustomFishingRevamped.conditions.Condition;
 import com.gmail.cubitverde.CustomFishingRevamped.conditions.PermissionCondition;
 import com.gmail.cubitverde.CustomFishingRevamped.conditions.PlayersCondition;
+import com.gmail.cubitverde.CustomFishingRevamped.conditions.TimeCondition;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.Menu;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.fishingLoot.conditionalLoot.conditions.BucketConditions;
 import com.gmail.cubitverde.CustomFishingRevamped.menus.lootCollections.CollectionsList;
@@ -28,6 +29,7 @@ public class ConditionUtils {
 
         availableConditions.add(new PlayersCondition());
         availableConditions.add(new PermissionCondition());
+        availableConditions.add(new TimeCondition());
 
         return availableConditions;
     }

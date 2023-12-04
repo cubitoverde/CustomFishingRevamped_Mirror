@@ -3,11 +3,10 @@ package com.gmail.cubitverde.CustomFishingRevamped.utilities;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.util.Vector;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -148,5 +147,29 @@ public class MiscUtils {
         return null;
     }
 
+    public static String ConvertTicksToTimeQuarters(int ticks) {
+        int quarters = ticks / 250 + 6 * 4;
 
+        int prefix = quarters / 4 % 24;
+        int suffix = quarters % 4 * 15;
+
+        if (suffix < 10) {
+            return prefix + ":0" + suffix;
+        } else {
+            return prefix + ":" + suffix;
+        }
+    }
+
+    public static String ConvertTicksToTimeExact(int ticks) {
+        float hours = (float) ticks / 1000 + 6;
+
+        int prefix = (int) (Math.floor(hours) % 24);
+        int suffix = (int) (hours % 1 * 60);
+
+        if (suffix < 10) {
+            return prefix + ":0" + suffix;
+        } else {
+            return prefix + ":" + suffix;
+        }
+    }
 }
